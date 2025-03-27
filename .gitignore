@@ -1,0 +1,6 @@
+try.py
+venv/
+.env
+origin_pool.csv
+embedding_text.csv
+test_dataset.json
