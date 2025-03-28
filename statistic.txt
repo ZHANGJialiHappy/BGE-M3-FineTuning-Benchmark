@@ -1,0 +1,3 @@
+                 mix           only 5 Dense           only 5 sparse
+origin           93/111        93/111                 80/111
+ist finetune     92/111        94/111                 86/111
