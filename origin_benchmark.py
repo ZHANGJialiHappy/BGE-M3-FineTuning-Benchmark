@@ -9,8 +9,8 @@ from urllib.parse import unquote
 test_dataset_path = "test_dataset.json"
 pool_path = "pool.csv"
 mix_output_csv_path = "origin_mix_incorrect_questions.csv"
-dense_output_csv_path = "origin_dense_incorrect_questions.csv"
-sparse_output_csv_path = "origin_sparse_incorrect_questions.csv"
+top_5_dense_output_csv_path = "origin_top_5_dense_incorrect_questions.csv"
+top_5_sparse_output_csv_path = "origin_top_5_sparse_incorrect_questions.csv"
 
 # 加载 test_dataset.json
 with open(test_dataset_path, mode="r", encoding="utf-8") as json_file:
@@ -112,12 +112,12 @@ for i, item in enumerate(test_dataset):
     if bool(set(answers) & set(top_5_dense_source_uris)):
         dense_score += 1
     else:
-        dense_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_mix_source_uris})
+        dense_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_5_dense_source_uris})
 
     if bool(set(answers) & set(top_5_sparse_source_uris)):
         sparse_score += 1
     else:
-        sparse_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_mix_source_uris})
+        sparse_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_5_sparse_source_uris})
 
 # 输出得分
 total_questions = len(test_dataset)
@@ -129,9 +129,9 @@ print(f"origin_sparse_score: {sparse_score}/{total_questions}")
 pd.DataFrame(mix_incorrect_questions).to_csv(mix_output_csv_path, index=False, encoding="utf-8")
 print(f"Mixed method: Incorrect questions saved to {mix_output_csv_path}")
 
-pd.DataFrame(dense_incorrect_questions).to_csv(dense_output_csv_path, index=False, encoding="utf-8")
-print(f"Dense method: Incorrect questions saved to {dense_output_csv_path}")
+pd.DataFrame(dense_incorrect_questions).to_csv(top_5_dense_output_csv_path, index=False, encoding="utf-8")
+print(f"Dense method: Incorrect questions saved to {top_5_dense_output_csv_path}")
 
-pd.DataFrame(sparse_incorrect_questions).to_csv(sparse_output_csv_path, index=False, encoding="utf-8")
-print(f"Sparse method: Incorrect questions saved to {sparse_output_csv_path}")
+pd.DataFrame(sparse_incorrect_questions).to_csv(top_5_sparse_output_csv_path, index=False, encoding="utf-8")
+print(f"Sparse method: Incorrect questions saved to {top_5_sparse_output_csv_path}")
 

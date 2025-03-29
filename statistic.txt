@@ -1,3 +1,19 @@
-                 mix           only 5 Dense           only 5 sparse
-origin           93/111        93/111                 80/111
-ist finetune     92/111        94/111                 86/111
+accuracy 
+                 mix(top 3+2)           top 5 Dense           top 3 Dense        top 5 sparse     top 2 sparse
+origin           93/111                 93/111                90/111             80/111           62/111
+1st finetune     92/111                 94/111                91/111             86/111           66/111
+
+
+
+                 origin mix             finetune mix          origin 5 Dense     finetune 5 Dense   origin 3 Dense   finetune 3 Dense    origin 5 sparse   finetune 5 sparse      origin 2 sparse    finetune 2 sparse
+UUID Score       18                     15                    18                 13                 21               16                  31                21                     48                 41
+Alarm Score      0                      4                     0                  4                  0                4                   0                 4                      1                  4
+                                                                                                                                                           same                   SCU1-1181.html     SCU1-1181.html
+                                                                                                                                                                                                     SCU1-1691.html
+                                                                                                                                                                                                     SCU1-LO0282.html, SCU1-LO0283.html
+                                                                                                                                                                                                     CWCU-046003.html
+Alarm always wrong answers:
+1. Scavenging air pressure (Pscav) is too high, what can be cause?                        ['SCU1-1181.html']
+2. No automatic scavenging air control, what can be cause?                                ['SCU1-1691.html']
+3. TC Lube Oil Inlet Pressure is low, what to do?                                         ['SCU1-LO0282.html', 'SCU1-LO0283.html']
+4. Have alarm LDCL Circulation pump delta pressure too low. What can be reason?           ['CWCU-046003.html']                                                                                                                                                                                              
