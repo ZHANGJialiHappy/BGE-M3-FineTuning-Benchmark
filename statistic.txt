@@ -4,16 +4,111 @@ origin           93/111                 93/111                90/111            
 1st finetune     92/111                 94/111                91/111             86/111           66/111
 
 
+origin wrong answer statistic
+                 origin mix             origin 5 Dense     origin 3 Dense   origin 5 sparse   origin 2 sparse
+UUID Score       18                     18                 21               31                48             
+Alarm Score      0                      0                  0                0                 1               
+                                                                                              SCU1-1181.html                                                                                 
 
-                 origin mix             finetune mix          origin 5 Dense     finetune 5 Dense   origin 3 Dense   finetune 3 Dense    origin 5 sparse   finetune 5 sparse      origin 2 sparse    finetune 2 sparse
-UUID Score       18                     15                    18                 13                 21               16                  31                21                     48                 41
-Alarm Score      0                      4                     0                  4                  0                4                   0                 4                      1                  4
-                                                                                                                                                           same                   SCU1-1181.html     SCU1-1181.html
-                                                                                                                                                                                                     SCU1-1691.html
-                                                                                                                                                                                                     SCU1-LO0282.html, SCU1-LO0283.html
-                                                                                                                                                                                                     CWCU-046003.html
+1st round finetune wrong answer statistic
+                 finetune mix          finetune 5 Dense   finetune 3 Dense    finetune 5 sparse      finetune 2 sparse
+UUID Score       15                    13                 16                  21                     41
+Alarm Score      4                     4                  4                   4                      4
+                                                                              same                   SCU1-1181.html 
+                                                                                                     SCU1-1691.html
+                                                                                                     SCU1-LO0282.html, SCU1-LO0283.html                                                                                                
+                                                                                                     CWCU-046003.html                                                                                                                                                                                                  
 Alarm always wrong answers:
-1. Scavenging air pressure (Pscav) is too high, what can be cause?                        ['SCU1-1181.html']
-2. No automatic scavenging air control, what can be cause?                                ['SCU1-1691.html']
-3. TC Lube Oil Inlet Pressure is low, what to do?                                         ['SCU1-LO0282.html', 'SCU1-LO0283.html']
-4. Have alarm LDCL Circulation pump delta pressure too low. What can be reason?           ['CWCU-046003.html']                                                                                                                                                                                              
+1. Scavenging air pressure (Pscav) is too high, what can be cause?                        ['SCU1-1181.html']                              ['15093035147.html', '17780484491.html']      
+2. No automatic scavenging air control, what can be cause?                                ['SCU1-1691.html']                              ['71018847499__en.html', '71018847499__en.html']
+3. TC Lube Oil Inlet Pressure is low, what to do?                                         ['SCU1-LO0282.html', 'SCU1-LO0283.html']        ['71018847499__en.html', '71018847499__en.html']
+4. Have alarm LDCL Circulation pump delta pressure too low. What can be reason?           ['CWCU-046003.html']                            ['71018847499__en.html', '71018847499__en.html']
+
+1. right answer
+Alarm SCU1-1181
+
+
+
+SCU\* / IO Terminals / High Scavenge Air Pressure [SLD].
+
+Alarm SCU1-1181
+===============
+
+High Scavenge Air Pressure [SLD].
+
+Description
+-----------
+
+Scavenging air pressure (Pscav) is too high.
+
+Cause
+-----
+
+- Variable turbocharger is too open for the current engine load, or  
+- Measurement equipment failure, or  
+- Turbocharger failure.
+
+Effect
+------
+
+Slowdown request is issued to the safety system.
+
+Suggested actions
+-----------------
+
+1. Keep engine load below 75%  
+2. Reset slowdown  
+3. Set the variable turbocharger/bypass valve to fully open (MOP -> 'Auxiliaries' -> 'Scavenge Air'' -> 'Bypass Mode' - 'Manual' - requires Chief level access)  
+4. Resume normal engine operation.  
+  
+If the problem persists, check:  
+- Pscav measurement equipment. Compare to other Pscav measurements.   
+- Mechanical position of variable turbocharger/bypass valve  
+  
+If the problem persists: Open variable turbocharger/bypass valve by local control or mechanically (refer to actuator manual).
+
+1. wrong answer
+
+﻿
+Cleaning sequence
+
+1. <a href="index.html">9836048</a>
+2. <a href="71005245963.html">L9836048</a>
+3. <a href="71005957003.html">Turbocharger System</a>
+4. <a href="71005976331.html">Work cards</a>
+5. <a href="M5121000-05.html">M5121000-05</a>
+6. Cleaning sequence
+
+### Cleaning sequence
+
+Please also consult the instruction plate on the engine.
+
+The cleaning is to be carried out at high engine load, min. 75 % MCR.
+
+1. Fill the container (2) with granulate. The amount depending on the type of turbocharger.
+
+|  |  |
+| --- | --- |
+| NR12, NR14, NR15, NR17, NR20 | 0.3 liters |
+| NR24, NR26 | 0.4 liters |
+| NR29, NR34 | 0.5 liters |
+| TCR12, TCR14, TCR16 | 0.3 liters |
+| TCR18, TCR20 | 0.4 liters |
+
+1. Connect to the working air system (4).
+2. Connect the dry cleaning device to valve (1) and open valve (3). Then open valve (1) slowly until a hissing sound indicates that the granulate is being injected. Injection period: Approx. 2 min or until the container is empty.
+
+Dry cleaning must be performed at all injection connections (if more than one).  
+  
+ NOTICE If vibrations occur after cleaning the turbine it is necessary to repeat the cleaning process until no vibrations are observed
+
+Copyright © 2023 MAN Energy Solutions
+
+<a class="schema-navbar-brand" href="index.html"><img class="schema-navbar-logo" src="manual/58548175-ccef-4d6a-987c-f597b7d4d225/assets/img/MAN_pm_pos_rgb_300.png"/></a>
+
+
+* <a href="index.html">Home</a>
+* Language
+* <a href="15093035147.html">english</a>
+
+* <a href="index.html">Home</a>
