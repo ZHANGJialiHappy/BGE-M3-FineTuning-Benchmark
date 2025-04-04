@@ -10,7 +10,9 @@ test_dataset_path = "test_dataset.json"
 pool_path = "pool.csv"
 mix_output_csv_path = "origin_mix_incorrect_questions.csv"
 top_5_dense_output_csv_path = "origin_top_5_dense_incorrect_questions.csv"
+top_3_dense_output_csv_path = "origin_top_3_dense_incorrect_questions.csv"
 top_5_sparse_output_csv_path = "origin_top_5_sparse_incorrect_questions.csv"
+top_2_sparse_output_csv_path = "origin_top_2_sparse_incorrect_questions.csv"
 
 # 加载 test_dataset.json
 with open(test_dataset_path, mode="r", encoding="utf-8") as json_file:
@@ -84,11 +86,17 @@ for q_embedding in sparse_question_embeddings:
 mix_score = 0
 mix_incorrect_questions = []
 
-dense_score=0
-dense_incorrect_questions = []
+top_5_dense_score=0
+top_5_dense_incorrect_questions = []
 
-sparse_score=0
-sparse_incorrect_questions = []
+top_3_dense_score=0
+top_3_dense_incorrect_questions = []
+
+top_5_sparse_score=0
+top_5_sparse_incorrect_questions = []
+
+top_2_sparse_score=0
+top_2_sparse_incorrect_questions = []
 
 for i, item in enumerate(test_dataset):
     answers = item[1]  # 获取答案列表
@@ -97,9 +105,14 @@ for i, item in enumerate(test_dataset):
 
     top_mix_source_uris = [unquote(source_uris[idx]).split("/")[-1] for idx in mix_top_indices]  # 提取对应的 source_uri
 
-    top_5_dense_source_uris = [unquote(source_uris[idx]).split("/")[-1] for idx in set(top_5_indices_dense[i])]  # 提取对应的 source_uri
+    top_5_dense_source_uris = [unquote(source_uris[idx]).split("/")[-1] for idx in set(top_5_indices_dense[i])]
+        
+    top_3_dense_source_uris = [unquote(source_uris[idx]).split("/")[-1] for idx in set(top_3_indices_dense[i])] 
 
-    top_5_sparse_source_uris = [unquote(source_uris[idx]).split("/")[-1] for idx in set(top_5_indices_sparse[i])]  # 提取对应的 source_uri
+    top_5_sparse_source_uris = [unquote(source_uris[idx]).split("/")[-1] for idx in set(top_5_indices_sparse[i])]
+        
+    top_2_sparse_source_uris = [unquote(source_uris[idx]).split("/")[-1] for idx in set(top_2_indices_sparse[i])]
+
 
 
     # 检查答案和最近的 source_uri 是否有交集
@@ -110,28 +123,46 @@ for i, item in enumerate(test_dataset):
         mix_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_mix_source_uris})
 
     if bool(set(answers) & set(top_5_dense_source_uris)):
-        dense_score += 1
+        top_5_dense_score += 1
     else:
-        dense_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_5_dense_source_uris})
+        top_5_dense_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_5_dense_source_uris})
 
-    if bool(set(answers) & set(top_5_sparse_source_uris)):
-        sparse_score += 1
+    if bool(set(answers) & set(top_3_dense_source_uris)):
+        top_3_dense_score += 1
     else:
-        sparse_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_5_sparse_source_uris})
+        top_3_dense_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_3_dense_source_uris})
+        
+    if bool(set(answers) & set(top_5_sparse_source_uris)):
+        top_5_sparse_score += 1
+    else:
+        top_5_sparse_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_5_sparse_source_uris})
+
+    if bool(set(answers) & set(top_2_sparse_source_uris)):
+        top_2_sparse_score += 1
+    else:
+        top_2_sparse_incorrect_questions.append({"question": item[0]["en"], "answers": answers, "top_uris": top_2_sparse_source_uris})
 
 # 输出得分
 total_questions = len(test_dataset)
 print(f"origin_mix_score: {mix_score}/{total_questions}")
-print(f"origin_dense_score: {dense_score}/{total_questions}")
-print(f"origin_sparse_score: {sparse_score}/{total_questions}")
+print(f"origin_top_5_dense_score: {top_5_dense_score}/{total_questions}")
+print(f"origin_top_3_dense_score: {top_3_dense_score}/{total_questions}")
+print(f"origin_top_5_sparse_score: {top_5_sparse_score}/{total_questions}")
+print(f"origin_top_2_sparse_score: {top_2_sparse_score}/{total_questions}")
 
-# 将3+2答错的题目保存到 CSV 文件
+# 将题目保存到 CSV 文件
 pd.DataFrame(mix_incorrect_questions).to_csv(mix_output_csv_path, index=False, encoding="utf-8")
 print(f"Mixed method: Incorrect questions saved to {mix_output_csv_path}")
 
-pd.DataFrame(dense_incorrect_questions).to_csv(top_5_dense_output_csv_path, index=False, encoding="utf-8")
-print(f"Dense method: Incorrect questions saved to {top_5_dense_output_csv_path}")
+pd.DataFrame(top_5_dense_incorrect_questions).to_csv(top_5_dense_output_csv_path, index=False, encoding="utf-8")
+print(f"Top 5 Dense method: Incorrect questions saved to {top_5_dense_output_csv_path}")
 
-pd.DataFrame(sparse_incorrect_questions).to_csv(top_5_sparse_output_csv_path, index=False, encoding="utf-8")
-print(f"Sparse method: Incorrect questions saved to {top_5_sparse_output_csv_path}")
+pd.DataFrame(top_3_dense_incorrect_questions).to_csv(top_3_dense_output_csv_path, index=False, encoding="utf-8")
+print(f"Top 3 Dense method: Incorrect questions saved to {top_3_dense_output_csv_path}")
+
+pd.DataFrame(top_5_sparse_incorrect_questions).to_csv(top_5_sparse_output_csv_path, index=False, encoding="utf-8")
+print(f"Top 5 Sparse method: Incorrect questions saved to {top_5_sparse_output_csv_path}")
+
+pd.DataFrame(top_2_sparse_incorrect_questions).to_csv(top_2_sparse_output_csv_path, index=False, encoding="utf-8")
+print(f"Top 2 Sparse method: Incorrect questions saved to {top_2_sparse_output_csv_path}")
 

@@ -8,11 +8,11 @@ from urllib.parse import unquote
 # 文件路径
 test_dataset_path = "test_dataset.json"
 pool_path = "pool.csv"
-mix_output_csv_path = "origin_mix_incorrect_questions.csv"
-top_5_dense_output_csv_path = "origin_top_5_dense_incorrect_questions.csv"
-top_3_dense_output_csv_path = "origin_top_3_dense_incorrect_questions.csv"
-top_5_sparse_output_csv_path = "origin_top_5_sparse_incorrect_questions.csv"
-top_2_sparse_output_csv_path = "origin_top_2_sparse_incorrect_questions.csv"
+mix_output_csv_path = "finetune_mix_incorrect_questions.csv"
+top_5_dense_output_csv_path = "finetune_top_5_dense_incorrect_questions.csv"
+top_3_dense_output_csv_path = "finetune_top_3_dense_incorrect_questions.csv"
+top_5_sparse_output_csv_path = "finetune_top_5_sparse_incorrect_questions.csv"
+top_2_sparse_output_csv_path = "finetune_top_2_sparse_incorrect_questions.csv"
 
 # 加载 test_dataset.json
 with open(test_dataset_path, mode="r", encoding="utf-8") as json_file:
@@ -144,11 +144,11 @@ for i, item in enumerate(test_dataset):
 
 # 输出得分
 total_questions = len(test_dataset)
-print(f"origin_mix_score: {mix_score}/{total_questions}")
-print(f"origin_top_5_dense_score: {top_5_dense_score}/{total_questions}")
-print(f"origin_top_3_dense_score: {top_3_dense_score}/{total_questions}")
-print(f"origin_top_5_sparse_score: {top_5_sparse_score}/{total_questions}")
-print(f"origin_top_2_sparse_score: {top_2_sparse_score}/{total_questions}")
+print(f"finetune_mix_score: {mix_score}/{total_questions}")
+print(f"finetune_top_5_dense_score: {top_5_dense_score}/{total_questions}")
+print(f"finetune_top_3_dense_score: {top_3_dense_score}/{total_questions}")
+print(f"finetune_top_5_sparse_score: {top_5_sparse_score}/{total_questions}")
+print(f"finetune_top_2_sparse_score: {top_2_sparse_score}/{total_questions}")
 
 # 将题目保存到 CSV 文件
 pd.DataFrame(mix_incorrect_questions).to_csv(mix_output_csv_path, index=False, encoding="utf-8")

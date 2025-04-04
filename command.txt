@@ -47,7 +47,7 @@ python -m ipykernel install --user --name=ft_bge_env --display-name="ft_bge_env"
     --gradient_checkpointing \
     --deepspeed ../examples/finetune/ds_stage0.json \
     --logging_steps 1 \
-    --save_steps 1000 \
+    --save_steps 10000 \
     --negatives_cross_device \
     --temperature 0.02 \                                        越低越尖锐，score/temperature, make caculation of similarity not so sharp, default value is 1，处于中间状态
     --sentence_pooling_method cls \
