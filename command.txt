@@ -98,6 +98,12 @@ python -m ipykernel install --user --name=ft_bge_env --display-name="ft_bge_env"
 
 
 
+
+Try
+    --learning_rate 1e-5 \1e-4 1e-6
+    --per_device_train_batch_size 2 \4
+    --warmup_ratio 0.1 \0.15
+
 model_name_or_path: 模型检查点的路径，用于初始化。在这个例子中是 BAAI/bge-m3。
 config_name: 预训练配置的名称或路径，如果与 model_name 不同。
 tokenizer_name: 预训练分词器的名称或路径，如果与 model_name 不同。
