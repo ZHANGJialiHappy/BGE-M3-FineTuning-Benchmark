@@ -2,7 +2,7 @@ accuracy
                  mix(top 3+2)           top 5 Dense           top 3 Dense        top 5 sparse     top 2 sparse
 origin           93/111                 93/111                90/111             80/111           62/111
 1st finetune     92/111                 94/111                91/111             86/111           66/111
-
+                 88
 
 origin wrong answer statistic
                  origin mix             origin 5 Dense     origin 3 Dense   origin 5 sparse   origin 2 sparse
